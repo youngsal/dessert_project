@@ -31,16 +31,16 @@ section {
     /* width: 100%; */
     grid-template-columns: 2.5fr 1fr;
     grid-gap: 1rem;
-    border: solid red;
+    /* border: solid red; */
 }
 
-.section_one {
+/* .section_one {
     border: solid black;
 }
 
 .section_two {
     border: solid blue;
-}
+} */
 
 .heading_p {
     font-size: 2rem;

@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --textcolor: hsl(12, 20%, 44%);
+    --bloodColor: hsl(14, 65%, 9%);
+    --lightBrown: hsl(14, 25%, 72%);
+    --lightBrown: hsl(7, 20%, 60%);
+    --darkestBrown: hsl(7, 20%, 60%);
+    --hoverText: hsl(13, 31%, 94%);
+    --activeRed: hsl(14, 86%, 42%);
+    --green: hsl(159, 69%, 38%);
+}
+
+* {
+    font-family: "Red Hat Text", sans-serif;
+}
+
+body{
+    box-sizing: border-box;
+    /* color: var(--textcolor); */
+    /* background-color: hsl(20, 50%, 98%); */
+    background-color: var(--hoverText);
+}
+
+section {
+    margin: 0rem 7rem 4rem 7rem;
+}
+
+.container {
+    display: grid;
+    /* width: 100%; */
+    grid-template-columns: 2.5fr 1fr;
+    grid-gap: 1rem;
+    border: solid red;
+}
+
+.section_one {
+    border: solid black;
+}
+
+.section_two {
+    border: solid blue;
+}
+
+.heading_p {
+    font-size: 2rem;
+    font-weight: 700;
+    /* border: solid red; */
+}
+
+.product_divs {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.same_product_div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product_row {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.add_product {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 19rem;
+    border-radius: 0.8rem;
+}
+
+.add_btn {
+    position: absolute;
+    display: flex;
+    width: 10.5rem;
+    height: 2.8rem;
+    place-items: center;
+    justify-content: center;
+    bottom: -1.4rem;
+    left: 50%;
+    gap: 0.4rem;
+    background-color: #fff;
+    border: 0.1rem solid #000;
+    border-radius: 1.5rem;
+    transform: translateX(-50%);
+}
+
+.icon {
+    color: var(--activeRed);
+}
+
+.add_btn p {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+h4 {
+    margin: 0.2rem 0rem;
+    font-weight: 600;
+}
+
+.product_name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--lightBrown);
+}
+
+.dollar_amount {
+    font-weight: 550;
+    color: var(--activeRed);
+}
+
+.product_image1 {
+    background-image: url("/images/image-waffle-desktop.jpg");
+}
+
+.product_image2 {
+    background-image: url("/images/image-creme-brulee-desktop.jpg");
+}
+
+.product_image3 {
+    background-image: url("/images/image-macaron-desktop.jpg");
+}
+
+.product_image4 {
+    background-image: url("/images/image-tiramisu-desktop.jpg");
+}
+
+.product_image5 {
+    background-image: url("/images/image-baklava-desktop.jpg");
+}
+
+.product_image6 {
+    background-image: url("/images/image-meringue-desktop.jpg");
+}
+
+.product_image7 {
+    background-image: url("/images/image-cake-desktop.jpg");
+}
+
+.product_image8 {
+    background-image: url("/images/image-brownie-desktop.jpg");
+}
+
+.product_image9 {
+    background-image: url("/images/image-panna-cotta-desktop.jpg");
+}
+
+/* section_two */
+.cart_div {
+    /* height: 40rem; */
+    padding: 1rem;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    /* border: solid red; */
+}
+
+h2 {
+    color: var(--activeRed);
+    margin-bottom: 2rem;
+}
+
+.image_appear {
+    text-align: center;
+}
+
+.appear_text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--darkestBrown);
+}

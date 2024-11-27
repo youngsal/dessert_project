@@ -231,7 +231,7 @@ h2 {
 }
 
 .item_name p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 650;
     margin: 0rem;
     padding: 0.3rem 0rem;
@@ -258,10 +258,12 @@ h2 {
 }
 
 .amount {
+    font-size: 0.8rem;
     color: var(--lightBrown);
 }
 
 .amount_added {
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--textcolor);
 }
@@ -288,8 +290,8 @@ h2 {
 }
 
 .total_amount {
-    font-size: 1.6rem;
-    font-weight: 900;
+    font-size: 1.4rem;
+    font-weight: 800;
     color: #000;
 }
 
@@ -313,8 +315,74 @@ h2 {
     color: #fff;
     border-radius: 2rem;
     background-color: var(--activeRed);
+    cursor: pointer;
 }
 
 .comfirm_order_btn:hover {
     background-color: var(--textcolor);
+}
+
+/* ================== Success Modal ================ */
+.success_modal {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.comfirmed_container {
+    width: 25%;
+    padding: 2rem;
+    margin: 0rem auto;
+    align-content: center;
+    background-color: #fff;
+    border-radius: 0.8rem;
+}
+
+.tick_green {
+    font-size: 2.5rem;
+    color: var(--green);
+}
+
+.heading_one {
+    font-size: 2rem;
+    margin: 0.7rem 0rem 0rem 0rem;
+}
+
+.enjoy_text {
+    font-size: 0.9rem;
+    color: var(--darkBrown);
+}
+
+.order_items {
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    margin-top: 1rem;
+    background-color: var(--hoverText);
+}
+
+.image_ordered {
+    display: flex;
+    gap: 1rem;
+    width: 70%;
+    place-items: center;
+    /* border: solid red; */
+}
+
+.item_image {
+    width: 18%;
+}
+
+.item_image img {
+    width: 100%;
+}
+
+.receipt_div {
+    display: flex;
+    padding: 1rem 0rem 0.6rem 0rem;
+    justify-content: space-between;
 }

@@ -63,16 +63,13 @@ section {
     border-radius: 0.8rem;
 }
 
-.add_btn {
+.add_minus_btn {
     position: absolute;
     display: flex;
-    width: 10.5rem;
+    width: 10rem;
     height: 2.8rem;
-    place-items: center;
-    justify-content: center;
     bottom: -1.4rem;
     left: 50%;
-    gap: 0.4rem;
     background-color: #fff;
     border: 0.1rem solid var(--darkBrown);
     border-radius: 1.5rem;
@@ -80,7 +77,18 @@ section {
     cursor: pointer;
 }
 
-.add_btn:hover {
+.add_btn {
+    display: flex;
+    gap: 0.4rem;
+    height: 100%;
+    width: 10rem;
+    place-items: center;
+    border-radius: 1.5rem;
+    background-color: #fff;
+    justify-content: center;
+}
+
+.add_minus_btn:hover {
     color: var(--activeRed);
     transition: ease 0.2s;
     border: 0.1rem solid var(--activeRed);
@@ -93,6 +101,40 @@ section {
 .add_btn p {
     font-size: 0.9rem;
     font-weight: 600;
+}
+
+.add_quantity {
+    display: flex;
+    height: 100%;
+    width: 10rem;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 1.5rem;
+    place-items: center;
+    border: none;
+    padding: 0rem 0.3rem;
+    justify-content: space-between;
+    background-color: var(--activeRed);
+    display: none;
+}
+
+.add_quantity .add_remove_icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    text-align: center;
+    font-size: 0.9rem;
+    align-items: center;
+    border: 1.4px solid #fff;
+    border-radius: 50%;
+}
+
+.add_quantity .add_remove_icon:hover {
+    background-color: #fff;
+    color: var(--activeRed);
+}
+
+.number_quantity {
+    color: #fff;
 }
 
 h4 {

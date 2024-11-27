@@ -219,15 +219,12 @@ h2 {
     padding: 1rem 0rem;
     border-bottom: 0.5px solid var(--lightBrown);
     justify-content: space-between;
-    /* border: solid red; */
 }
 
 .item_name {
     display: flex;
-    /* gap: 1rem; */
     width: 80%;
     flex-direction: column;
-    /* border: solid blue; */
 }
 
 .item_name p {
@@ -236,7 +233,6 @@ h2 {
     margin: 0rem;
     padding: 0.3rem 0rem;
     color: var(--textcolor);
-    /* border: solid red; */
 }
 
 .quantity_amount {
@@ -244,7 +240,6 @@ h2 {
     gap: 1rem;
     font-weight: 500;
     place-items: center;
-    /* border: solid red; */
 }
 
 .quantity {
@@ -370,7 +365,6 @@ h2 {
     gap: 1rem;
     width: 70%;
     place-items: center;
-    /* border: solid red; */
 }
 
 .item_image {

@@ -4,7 +4,7 @@
     --textcolor: hsl(12, 20%, 44%);
     --bloodColor: hsl(14, 65%, 9%);
     --lightBrown: hsl(14, 25%, 72%);
-    --lightBrown: hsl(7, 20%, 60%);
+    --darkBrown: hsl(7, 20%, 60%);
     --darkestBrown: hsl(7, 20%, 60%);
     --hoverText: hsl(13, 31%, 94%);
     --activeRed: hsl(14, 86%, 42%);
@@ -74,9 +74,16 @@ section {
     left: 50%;
     gap: 0.4rem;
     background-color: #fff;
-    border: 0.1rem solid #000;
+    border: 0.1rem solid var(--darkBrown);
     border-radius: 1.5rem;
     transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.add_btn:hover {
+    color: var(--activeRed);
+    transition: ease 0.2s;
+    border: 0.1rem solid var(--activeRed);
 }
 
 .icon {
@@ -150,7 +157,7 @@ h4 {
 
 h2 {
     color: var(--activeRed);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .image_appear {
@@ -162,4 +169,110 @@ h2 {
     font-size: 1rem;
     font-weight: 600;
     color: var(--darkestBrown);
+}
+
+.product_name_amount {
+    display: flex;
+    place-items: center;
+    padding: 1rem 0rem;
+    border-bottom: 0.5px solid var(--lightBrown);
+    justify-content: space-between;
+    /* border: solid red; */
+}
+
+.item_name {
+    display: flex;
+    /* gap: 1rem; */
+    width: 80%;
+    flex-direction: column;
+    /* border: solid blue; */
+}
+
+.item_name p {
+    font-size: 1rem;
+    font-weight: 650;
+    margin: 0rem;
+    padding: 0.3rem 0rem;
+    color: var(--textcolor);
+    /* border: solid red; */
+}
+
+.quantity_amount {
+    display: flex;
+    gap: 1rem;
+    font-weight: 500;
+    place-items: center;
+    /* border: solid red; */
+}
+
+.quantity {
+    font-size: 0.8rem;
+    color: var(--activeRed);
+}
+
+.amount_plus {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.amount {
+    color: var(--lightBrown);
+}
+
+.amount_added {
+    font-weight: 600;
+    color: var(--textcolor);
+}
+
+.close_btn {
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--lightBrown);
+}
+
+.close_btn:hover {
+    color: #000;
+}
+
+.total_div {
+    display: flex;
+    padding: 1.7rem 0rem;
+    justify-content: space-between;
+}
+
+.total_text {
+    font-weight: 458;
+    color: var(--textcolor);
+}
+
+.total_amount {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #000;
+}
+
+.icon_carbon_div {
+    display: flex;
+    gap: 0.5rem;
+    height: 3rem;
+    place-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: var(--hoverText);
+}
+
+.comfirm_order_btn {
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1rem 0rem;
+    margin-top: 2rem;
+    border: none;
+    color: #fff;
+    border-radius: 2rem;
+    background-color: var(--activeRed);
+}
+
+.comfirm_order_btn:hover {
+    background-color: var(--textcolor);
 }

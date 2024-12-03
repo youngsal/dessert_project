@@ -203,7 +203,7 @@ h2 {
 
 .image_appear {
     text-align: center;
-    /* display: none; */
+    display: none;
 }
 
 .appear_text {
@@ -212,9 +212,9 @@ h2 {
     color: var(--darkestBrown);
 }
 
-.product_items {
+/* .product_items {
     display: none;
-}
+} */
 
 .product_name_amount {
     display: flex;

@@ -203,13 +203,17 @@ h2 {
 
 .image_appear {
     text-align: center;
-    display: none;
+    /* display: none; */
 }
 
 .appear_text {
     font-size: 1rem;
     font-weight: 600;
     color: var(--darkestBrown);
+}
+
+.product_items {
+    display: none;
 }
 
 .product_name_amount {

@@ -40,133 +40,185 @@ $(document).ready(function (){
         $quantity.text(currentValue + 1);
     });
 
-//     // Function to handle add button click
-// $('.add_btn').click(function () {
-//     let $addQuantity = $(this).closest('.add_quantity').find('.number_quantity');
-//     let $dollarAmount = $(this).closest('.add_product').find('.dollar_amount');
 
-//     // Update quantity in the product section
-//     let quantityValue = parseInt($addQuantity.text()) || 0;
-//     $addQuantity.text(quantityValue + 1);
 
-//     // Find corresponding quantity in cart
-//     let $cartQuantity = $('.quantity'); // Adjust selector to target the right product dynamically
-//     let $cartAmountAdded = $('.amount_added'); // Adjust selector to target the right product dynamically
 
-//     // Update quantity in the cart
-//     let cartQuantityValue = parseInt($cartQuantity.text()) || 0;
-//     $cartQuantity.text((cartQuantityValue + 1) + "x");
 
-//     // Update dollar amounts
-//     let itemPrice = parseFloat($dollarAmount.text().replace('$', '')) || 0; // Get item price
-//     let totalAmount = itemPrice * (cartQuantityValue + 1);
-//     $cartAmountAdded.text(`$${totalAmount.toFixed(2)}`);
 
-//     // Optionally update total order amount dynamically
-//     updateTotalAmount();
-// });
 
-// // Function to update the total amount in the cart
-// function updateTotalAmount() {
-//     let total = 0;
 
-//     // Loop through each .amount_added to sum the values
-//     $('.amount_added').each(function () {
-//         total += parseFloat($(this).text().replace('$', '')) || 0;
+
+        // // Add product to cart when add_btn is clicked
+        // $(".add_btn").on("click", function () {
+        //   const productName = $(this).closest(".product_info").find("h4").text();
+        //   const productPrice = $(this).closest(".product_info").find(".dollar_amount").text();
+          
+        //   // Check if the product already exists in the cart
+        //   let existingProduct = $(".cart_div .product_name_amount").filter(function() {
+        //     return $(this).find(".item_name p").text() === productName;
+        //   });
+      
+        //   if (existingProduct.length > 0) {
+        //     // Product already in cart, just update the quantity
+        //     let quantityElement = existingProduct.find(".quantity");
+        //     let amountAddedElement = existingProduct.find(".amount_added");
+        //     let quantity = parseInt(quantityElement.text()) + 1;
+        //     quantityElement.text(quantity + "x");
+        //     amountAddedElement.text("$" + (parseFloat(productPrice.replace('$', '')) * quantity).toFixed(2));
+        //   } else {
+        //     // New product, add to the cart
+        //     const cartItem = `
+        //       <div class="product_name_amount">
+        //         <div class="item_name">
+        //           <p>${productName}</p>
+        //           <div class="quantity_amount">
+        //             <span class="quantity">1x</span>
+        //             <div class="amount_plus">
+        //               <span class="amount">@ ${productPrice}</span>
+        //               <span class="amount_added">${productPrice}</span>
+        //             </div>
+        //           </div>
+        //         </div>
+        //         <div class="cancel_btn">
+        //           <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+        //         </div>
+        //         <div class="remove_btn">Remove</div> <!-- New remove button -->
+        //       </div>
+        //     `;
+        //     $(".cart_div").append(cartItem);
+        //   }
+      
+        //   updateTotalAmount();
+        // });
+      
+        // // Remove product from cart when remove_btn is clicked
+        // $(".cart_div").on("click", ".remove_btn", function () {
+        //   let cartItem = $(this).closest(".product_name_amount");
+        //   let quantityElement = cartItem.find(".quantity");
+        //   let amountAddedElement = cartItem.find(".amount_added");
+        //   let productPrice = parseFloat(cartItem.find(".amount").text().replace('@ $', ''));
+        //   let quantity = parseInt(quantityElement.text());
+      
+        //   if (quantity > 1) {
+        //     // If quantity is more than 1, decrement it
+        //     quantity--;
+        //     quantityElement.text(quantity + "x");
+        //     amountAddedElement.text("$" + (productPrice * quantity).toFixed(2));
+        //   } else {
+        //     // If quantity is 1, remove the item from the cart
+        //     cartItem.remove();
+        //   }
+      
+        //   updateTotalAmount();
+        // });
+      
+        // // Function to update the total amount
+        // function updateTotalAmount() {
+        //   let total = 0;
+        //   $(".cart_div .product_name_amount").each(function() {
+        //     let amountAdded = parseFloat($(this).find(".amount_added").text().replace('$', ''));
+        //     total += amountAdded;
+        //   });
+        //   $(".total_amount").text("$" + total.toFixed(2));
+        // }   
+
+//     var cart_item_added = 0;
+//     $(".add_btn").click(function (){
+//         cart_item_added++;
+
+//         let title = $(this).closest(".product_row").find("h4").text();
+//         let quantityNumber = $(this).closest(".product_row").find(".number_quantity").text();
+//         let price = $(this).closest(".product_row").find(".dollar_amount").text();
 //     });
 
-//     // Update the total amount
-//     $('.total_amount').text(`$${total.toFixed(2)}`);
-// }
 
-
-// // Function to handle add_icon click
-// $('.add_icon').click(function () {
-//     let $quantity = $(this).closest('.add_quantity').find('.number_quantity');
-//     let $amount = $(this).closest('.add_quantity').find('.dollar_amount');
-
-//     // Increment the product quantity
-//     let currentQuantity = parseInt($quantity.text()) || 0;
-//     $quantity.text(currentQuantity + 1);
-
-//     // Get the product's price
-//     let price = parseFloat($amount.text().replace('$', '')) || 0;
-
-//     // Add to cart
-//     updateCart($(this), currentQuantity + 1, price);
-// });
-
-// // Function to handle remove_icon click
-// $('.remove_icon').click(function () {
-//     let $quantity = $(this).closest('.add_quantity').find('.number_quantity');
-//     let $amount = $(this).closest('.add_quantity').find('.dollar_amount');
-
-//     // Decrement the product quantity, ensuring it doesn't go below 0
-//     let currentQuantity = parseInt($quantity.text()) || 0;
-//     if (currentQuantity > 0) {
-//         $quantity.text(currentQuantity - 1);
-
-//         // Get the product's price
-//         let price = parseFloat($amount.text().replace('$', '')) || 0;
-
-//         // Update cart
-//         updateCart($(this), currentQuantity - 1, price);
-//     }
-// });
-
-// // Function to update the cart
-// function updateCart($icon, quantity, price) {
-//     // Use a unique identifier (e.g., data-id) to find corresponding cart items
-//     let productId = $icon.closest('.add_product').data('id'); // Assuming products have data-id attributes
-//     let $cartItem = $(`.cart_div .product_name_amount[data-id="${productId}"]`);
-
-//     if (quantity > 0) {
-//         if ($cartItem.length) {
-//             // Update quantity and total amount for the product in the cart
-//             $cartItem.find('.quantity').text(`${quantity}x`);
-//             $cartItem.find('.amount_added').text(`$${(quantity * price).toFixed(2)}`);
-//         } else {
-//             // Add the product to the cart if it doesn't exist
-//             let productName = $icon.closest('.add_product').find('.product_name').text().trim();
-//             let cartItemHtml = `
-//                 <div class="product_name_amount" data-id="${productId}">
-//                     <div class="item_name">
-//                         <p>${productName}</p>
-//                         <div class="quantity_amount">
-//                             <span class="quantity">${quantity}x</span>
-//                             <div class="amount_plus">
-//                                 <span class="amount">@ $${price.toFixed(2)}</span>
-//                                 <span class="amount_added">$${(quantity * price).toFixed(2)}</span>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div class="cancel_btn">
-//                         <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//     let cart_section = `
+//         <div class="product_name_amount">
+//             <div class="item_name">
+//                 <p>
+//                     ${title}
+//                 </p>
+//                 <div class="quantity_amount">
+//                     // <span class="quantity">2x</span>
+//                     <span class="quantity">${quantityNumber}</span>
+//                     <div class="amount_plus">
+//                         // <span class="amount">@ $13.00</span>
+//                         <span class="amount">${price}</span>
+//                         <span class="amount_added">$6.50</span>
 //                     </div>
 //                 </div>
-//             `;
-//             $('.product_items').append(cartItemHtml);
-//         }
-//     } else {
-//         // Remove the product from the cart if quantity is 0
-//         $cartItem.remove();
-//     }
+//             </div>
+//             <div class="cancel_btn">
+//                 <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//             </div>
+//         </div>
+//     `
 
-//     // Update overall total
-//     updateTotalAmount();
-// }
+//     $(".product_items").append(cart_section);
+//     $(".cart_item_added").text(cart_item_added);
+//     $(".close_btn").click(function (){
+//         $(this).closest(".product_name_amount").remove();
 
-// // Function to update the total amount in the cart
-// function updateTotalAmount() {
-//     let total = 0;
-
-//     // Sum all the amounts in the cart
-//     $('.cart_div .amount_added').each(function () {
-//         total += parseFloat($(this).text().replace('$', '')) || 0;
+//         itemCount();
 //     });
 
-//     // Update the total amount in the cart
-//     $('.cart_div .total_amount').text(`$${total.toFixed(2)}`);
-// }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+//     function itemCount() {
+//         let res = $(".product_items").children.length;
+//         $(".cart_item_added").text(res);
+//     };
+// });
+
+
+var cart_item_added = 0;
+
+$(".add_btn").click(function () {
+    // Increment the cart item count
+    cart_item_added++;
+
+    // Get item details
+    let title = $(this).closest(".product_row").find("h4").text();
+    let quantityNumber = $(this).closest(".product_row").find(".number_quantity").text();
+    let price = $(this).closest(".product_row").find(".dollar_amount").text();
+
+    // Create the cart item template
+    let cart_section = `
+        <div class="product_name_amount">
+            <div class="item_name">
+                <p>${title}</p>
+                <div class="quantity_amount">
+                    <span class="quantity">${quantityNumber}x</span>
+                    <div class="amount_plus">
+                        <span class="amount">@ ${price}</span>
+                        <span class="amount_added">${price}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cancel_btn">
+                <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+            </div>
+        </div>
+    `;
+
+    // Append the new cart item to the cart section
+    $(".product_items").append(cart_section);
+
+    // Update the cart item count display
+    $(".cart_item_added").text(cart_item_added);
+});
+
+// Use event delegation for dynamically added close buttons
+$(".product_items").on("click", ".close_btn", function () {
+    // Remove the cart item
+    $(this).closest(".product_name_amount").remove();
+
+    // Update the cart item count
+    itemCount();
+});
+
+// Function to update the cart item count
+function itemCount() {
+    let res = $(".product_items").children().length;
+    $(".cart_item_added").text(res);
+}
+
 });

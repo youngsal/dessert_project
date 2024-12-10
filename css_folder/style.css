@@ -222,7 +222,12 @@ h2 {
     padding: 1rem 0rem;
     border-bottom: 0.5px solid var(--lightBrown);
     justify-content: space-between;
+    /* display: none; */
 }
+
+/* .product_item_div {
+    display: none;
+} */
 
 .item_name {
     display: flex;

@@ -363,28 +363,591 @@
 // });
 
 
-$(document).ready(function () {
-    let cartItemCount = 0;
+// $(document).ready(function () {
+//     let cartItemCount = 0;
 
-    // Show quantity input when the "Add" button is clicked
-    $(".add_btn").click(function () {
-        const parentBtn = $(this).closest(".add_minus_btn");
-        const title = $(this).closest(".product_row").find("h4").text();
-        const price = parseFloat($(this).closest(".product_row").find(".dollar_amount").text().replace("$", ""));
+//     // Show quantity input when the "Add" button is clicked
+//     $(".add_btn").click(function () {
+//         const parentBtn = $(this).closest(".add_minus_btn");
+//         const title = $(this).closest(".product_row").find("h4").text();
+//         const price = parseFloat($(this).closest(".product_row").find(".dollar_amount").text().replace("$", ""));
         
-        // Increment cart item count
-        cartItemCount++;
+//         // Increment cart item count
+//         cartItemCount++;
 
-        // Update UI to show quantity controls
+//         // Update UI to show quantity controls
+//         $(this).hide();
+//         parentBtn.find(".add_quantity").css({ display: "flex" });
+//         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
+
+//         // Add item to cart
+//         updateCartItem(title, price, 1);
+
+//         // Update cart item count display
+//         $(".cart_item_added").text(cartItemCount);
+//     });
+
+//     // Decrement quantity and update cart when the "Remove" icon is clicked
+//     $(".remove_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         if (currentQuantity > 1) {
+//             // Decrease quantity and update UI
+//             currentQuantity--;
+//             quantityElement.text(currentQuantity);
+
+//             // Update cart item
+//             updateCartItem(title, price, currentQuantity);
+//         } else {
+//             // Remove item from cart if quantity is 0
+//             currentQuantity = 0;
+//             quantityElement.text(currentQuantity);
+//             removeCartItem(title);
+//         }
+
+//         // Update cart item count
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+//     });
+
+//     // Increment quantity and update cart when the "Add" icon is clicked
+//     $(".add_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         // Increase quantity and update UI
+//         currentQuantity++;
+//         quantityElement.text(currentQuantity);
+
+//         // Update cart item
+//         updateCartItem(title, price, currentQuantity);
+
+//         // Update cart item count
+//         cartItemCount++;
+//         $(".cart_item_added").text(cartItemCount);
+//     });
+
+//     // Handle remove button in cart
+//     $(".product_items").on("click", ".close_btn", function () {
+//         const title = $(this).closest(".product_name_amount").find(".item_name p").text();
+
+//         // Remove item from cart
+//         removeCartItem(title);
+
+//         // Update cart item count
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+//     });
+
+//     // Function to update a cart item or add a new one
+//     function updateCartItem(title, price, quantity) {
+//         const existingProduct = $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         });
+
+//         if (existingProduct.length > 0) {
+//             // Update existing product in cart
+//             existingProduct.find(".quantity").text(`${quantity}x`);
+//             const newAmount = (price * quantity).toFixed(2);
+//             existingProduct.find(".amount_added").text(`$${newAmount}`);
+//         } else if (quantity > 0) {
+//             // Add a new product to the cart
+//             const cartItem = `
+//                 <div class="product_name_amount">
+//                     <div class="item_name">
+//                         <p>${title}</p>
+//                         <div class="quantity_amount">
+//                             <span class="quantity">${quantity}x</span>
+//                             <div class="amount_plus">
+//                                 <span class="amount">@ $${price}</span>
+//                                 <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="cancel_btn">
+//                         <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//                     </div>
+//                 </div>`;
+//             $(".product_items").append(cartItem);
+//         }
+//     }
+
+//     // Function to remove an item from the cart
+//     function removeCartItem(title) {
+//         $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         }).remove();
+//     }
+// });
+
+// $(document).ready(function () {
+//     let cartItemCount = 0;
+
+//     // Show quantity input when the "Add" button is clicked
+//     $(".add_btn").click(function () {
+//         const parentBtn = $(this).closest(".add_minus_btn");
+//         const title = $(this).closest(".product_row").find("h4").text();
+//         const price = parseFloat($(this).closest(".product_row").find(".dollar_amount").text().replace("$", ""));
+        
+//         // Increment cart item count
+//         cartItemCount++;
+
+//         // Update UI to show quantity controls
+//         $(this).hide();
+//         parentBtn.find(".add_quantity").css({ display: "flex" });
+//         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
+
+//         // Add item to cart
+//         updateCartItem(title, price, 1);
+
+//         // Update cart item count display
+//         $(".cart_item_added").text(cartItemCount);
+
+//         // Update total amount
+//         updateTotalAmount();
+//     });
+
+//     // Decrement quantity and update cart when the "Remove" icon is clicked
+//     $(".remove_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         if (currentQuantity > 1) {
+//             // Decrease quantity and update UI
+//             currentQuantity--;
+//             quantityElement.text(currentQuantity);
+
+//             // Update cart item
+//             updateCartItem(title, price, currentQuantity);
+//         } else {
+//             // Remove item from cart if quantity is 0
+//             currentQuantity = 0;
+//             quantityElement.text(currentQuantity);
+//             removeCartItem(title);
+//         }
+
+//         // Update cart item count
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+
+//         // Update total amount
+//         updateTotalAmount();
+//     });
+
+//     // Increment quantity and update cart when the "Add" icon is clicked
+//     $(".add_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         // Increase quantity and update UI
+//         currentQuantity++;
+//         quantityElement.text(currentQuantity);
+
+//         // Update cart item
+//         updateCartItem(title, price, currentQuantity);
+
+//         // Update cart item count
+//         cartItemCount++;
+//         $(".cart_item_added").text(cartItemCount);
+
+//         // Update total amount
+//         updateTotalAmount();
+//     });
+
+//     // Handle remove button in cart
+//     $(".product_items").on("click", ".close_btn", function () {
+//         const title = $(this).closest(".product_name_amount").find(".item_name p").text();
+
+//         // Remove item from cart
+//         removeCartItem(title);
+
+//         // Update cart item count
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+
+//         // Update total amount
+//         updateTotalAmount();
+//     });
+
+//     // Function to update a cart item or add a new one
+//     function updateCartItem(title, price, quantity) {
+//         const existingProduct = $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         });
+
+//         if (existingProduct.length > 0) {
+//             // Update existing product in cart
+//             existingProduct.find(".quantity").text(`${quantity}x`);
+//             const newAmount = (price * quantity).toFixed(2);
+//             existingProduct.find(".amount_added").text(`$${newAmount}`);
+//         } else if (quantity > 0) {
+//             // Add a new product to the cart
+//             const cartItem = `
+//                 <div class="product_name_amount">
+//                     <div class="item_name">
+//                         <p>${title}</p>
+//                         <div class="quantity_amount">
+//                             <span class="quantity">${quantity}x</span>
+//                             <div class="amount_plus">
+//                                 <span class="amount">@ $${price}</span>
+//                                 <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="cancel_btn">
+//                         <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//                     </div>
+//                 </div>`;
+//             $(".product_items").append(cartItem);
+//         }
+
+//         // Update total amount
+//         updateTotalAmount();
+//     }
+
+//     // Function to remove an item from the cart
+//     function removeCartItem(title) {
+//         $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         }).remove();
+
+//         // Update total amount
+//         updateTotalAmount();
+//     }
+
+//     // Function to calculate and update the total amount
+//     function updateTotalAmount() {
+//         let totalAmount = 0;
+
+//         // Sum up all .amount_added values in the cart
+//         $(".amount_added").each(function () {
+//             const amount = parseFloat($(this).text().replace("$", "")) || 0;
+//             totalAmount += amount;
+//         });
+
+//         // Update the total_amount div
+//         $(".total_amount").text(`$${totalAmount.toFixed(2)}`);
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(document).ready(function () {
+//     let cartItemCount = 0;
+
+//     $(".add_btn").click(function () {
+//         const parentBtn = $(this).closest(".add_minus_btn");
+//         const title = $(this).closest(".product_row").find("h4").text();
+//         const price = parseFloat($(this).closest(".product_row").find(".dollar_amount").text().replace("$", ""));
+        
+//         cartItemCount++;
+//         $(this).hide();
+//         parentBtn.find(".add_quantity").css({ display: "flex" });
+//         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
+//         updateCartItem(title, price, 1);
+//         $(".cart_item_added").text(cartItemCount);
+//         updateTotalAmount();
+//     });
+
+//     $(".remove_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         if (currentQuantity > 1) {
+//             currentQuantity--;
+//             quantityElement.text(currentQuantity);
+//             updateCartItem(title, price, currentQuantity);
+//         } else {
+//             currentQuantity = 0;
+//             quantityElement.text(currentQuantity);
+//             removeCartItem(title);
+//         }
+
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+//         updateTotalAmount();
+//     });
+
+//     $(".add_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         currentQuantity++;
+//         quantityElement.text(currentQuantity);
+//         updateCartItem(title, price, currentQuantity);
+
+//         cartItemCount++;
+//         $(".cart_item_added").text(cartItemCount);
+//         updateTotalAmount();
+//     });
+
+//     $(".product_items").on("click", ".close_btn", function () {
+//         const title = $(this).closest(".product_name_amount").find(".item_name p").text();
+
+//         removeCartItem(title);
+
+//         cartItemCount--;
+//         $(".cart_item_added").text(cartItemCount);
+//         updateTotalAmount();
+//     });
+
+//     function updateCartItem(title, price, quantity) {
+//         const existingProduct = $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         });
+
+//         if (existingProduct.length > 0) {
+//             existingProduct.find(".quantity").text(`${quantity}x`);
+//             const newAmount = (price * quantity).toFixed(2);
+//             existingProduct.find(".amount_added").text(`$${newAmount}`);
+//         } else if (quantity > 0) {
+//             const cartItem = `
+//                 <div class="product_name_amount">
+//                     <div class="item_name">
+//                         <p>${title}</p>
+//                         <div class="quantity_amount">
+//                             <span class="quantity">${quantity}x</span>
+//                             <div class="amount_plus">
+//                                 <span class="amount">@ $${price}</span>
+//                                 <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="cancel_btn">
+//                         <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//                     </div>
+//                 </div>`;
+//             $(".product_items").append(cartItem);
+//         }
+//     }
+
+//     function removeCartItem(title) {
+//         $(".product_name_amount").filter(function () {
+//             return $(this).find(".item_name p").text() === title;
+//         }).remove();
+//     }
+
+//     function updateTotalAmount() {
+//         let totalAmount = 0;
+//         const cartItems = $(".amount_added");
+//         if (cartItems.length > 0) {
+//             cartItems.each(function () {
+//                 const amount = parseFloat($(this).text().replace("$", "")) || 0;
+//                 totalAmount += amount;
+//             });
+//         }
+//         $(".total_amount").text(`$${totalAmount.toFixed(2)}`);
+//     }
+// });
+
+
+
+// $(document).ready(function () {
+//     let cartItems = {}; // Track items in the cart
+
+//     // Handle "Add to Cart" button click
+//     $(".add_btn").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const parentBtn = $(this).closest(".add_minus_btn");
+
+//         $(this).hide();
+//         parentBtn.find(".add_quantity").css({ display: "flex" });
+//         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
+
+//         // Add or update the item in the cart
+//         if (!cartItems[title]) {
+//             cartItems[title] = { price: price, quantity: 1 };
+//             addCartItem(title, price, 1);
+//         } else {
+//             cartItems[title].quantity += 1;
+//             updateCartItem(title, cartItems[title].price, cartItems[title].quantity);
+//         }
+
+//         updateTotal(); // Update the total amount
+//     });
+
+//     // Decrement quantity and update cart when the "Remove" icon is clicked
+//     $(".remove_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         if (currentQuantity > 1) {
+//             // Decrease quantity and update UI
+//             currentQuantity--;
+//             quantityElement.text(currentQuantity);
+
+//             // Update cart item
+//             updateCartItem(title, price, currentQuantity);
+//         } else {
+//             // Remove item from cart if quantity is 0
+//             removeCartItem(title);
+//         }
+
+//         updateTotal(); // Update total amount after quantity change
+//     });
+
+//     // Increment quantity and update cart when the "Add" icon is clicked
+//     $(".add_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         // Increase quantity and update UI
+//         currentQuantity++;
+//         quantityElement.text(currentQuantity);
+
+//         // Update cart item
+//         updateCartItem(title, price, currentQuantity);
+
+//         updateTotal(); // Update total amount after quantity change
+//     });
+
+//     // Function to add a new item to the cart
+//     function addCartItem(title, price, quantity) {
+//         const cartItem = `
+//             <div class="product_name_amount" data-title="${title}">
+//                 <div class="item_name">
+//                     <p>${title}</p>
+//                     <div class="quantity_amount">
+//                         <span class="quantity">${quantity}x</span>
+//                         <div class="amount_plus">
+//                             <span class="amount">@ $${price.toFixed(2)}</span>
+//                             <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div class="cancel_btn">
+//                     <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//                 </div>
+//             </div>`;
+//         $(".product_items").append(cartItem);
+//     }
+
+//     // Function to update an existing cart item
+//     function updateCartItem(title, price, quantity) {
+//         const cartItem = $(`.product_name_amount[data-title="${title}"]`);
+//         cartItem.find(".quantity").text(`${quantity}x`);
+//         cartItem.find(".amount_added").text(`$${(price * quantity).toFixed(2)}`);
+//     }
+
+//     // Function to calculate and update the total
+//     function updateTotal() {
+//         let total = 0;
+
+//         // Calculate the sum of all items in the cart
+//         for (const title in cartItems) {
+//             const item = cartItems[title];
+//             total += item.price * item.quantity;
+//         }
+
+//         // Update the total_amount div
+//         $(".total_amount").text(`$${total.toFixed(2)}`);
+//     }
+
+//     // Handle removing an item from the cart
+//     $(".product_items").on("click", ".close_btn", function () {
+//         const cartItem = $(this).closest(".product_name_amount");
+//         const title = cartItem.data("title");
+
+//         // Remove from the cartItems object
+//         delete cartItems[title];
+
+//         // Remove from the DOM
+//         cartItem.remove();
+
+//         updateTotal(); // Update the total
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function () {
+    let cartItems = {}; // Track items in the cart
+
+    // Handle "Add to Cart" button click
+    $(".add_btn").click(function () {
+        const parentRow = $(this).closest(".product_row");
+        const title = parentRow.find("h4").text();
+        const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+        const parentBtn = $(this).closest(".add_minus_btn");
+
         $(this).hide();
         parentBtn.find(".add_quantity").css({ display: "flex" });
         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
 
-        // Add item to cart
-        updateCartItem(title, price, 1);
+        // Add or update the item in the cart
+        if (!cartItems[title]) {
+            cartItems[title] = { price: price, quantity: 1 };
+            addCartItem(title, price, 1);
+        } else {
+            cartItems[title].quantity += 1;
+            updateCartItem(title, cartItems[title].price, cartItems[title].quantity);
+        }
 
-        // Update cart item count display
-        $(".cart_item_added").text(cartItemCount);
+        updateTotal(); // Update the total amount
     });
 
     // Decrement quantity and update cart when the "Remove" icon is clicked
@@ -401,18 +964,15 @@ $(document).ready(function () {
             currentQuantity--;
             quantityElement.text(currentQuantity);
 
-            // Update cart item
+            // Update cart item and cartItems object
+            cartItems[title].quantity = currentQuantity;
             updateCartItem(title, price, currentQuantity);
         } else {
             // Remove item from cart if quantity is 0
-            currentQuantity = 0;
-            quantityElement.text(currentQuantity);
             removeCartItem(title);
         }
 
-        // Update cart item count
-        cartItemCount--;
-        $(".cart_item_added").text(cartItemCount);
+        updateTotal(); // Update total amount after quantity change
     });
 
     // Increment quantity and update cart when the "Add" icon is clicked
@@ -428,63 +988,70 @@ $(document).ready(function () {
         currentQuantity++;
         quantityElement.text(currentQuantity);
 
-        // Update cart item
+        // Update cart item and cartItems object
+        if (cartItems[title]) {
+            cartItems[title].quantity = currentQuantity;
+        } else {
+            cartItems[title] = { price: price, quantity: currentQuantity };
+        }
+
         updateCartItem(title, price, currentQuantity);
-
-        // Update cart item count
-        cartItemCount++;
-        $(".cart_item_added").text(cartItemCount);
+        updateTotal(); // Update total amount after quantity change
     });
 
-    // Handle remove button in cart
-    $(".product_items").on("click", ".close_btn", function () {
-        const title = $(this).closest(".product_name_amount").find(".item_name p").text();
-
-        // Remove item from cart
-        removeCartItem(title);
-
-        // Update cart item count
-        cartItemCount--;
-        $(".cart_item_added").text(cartItemCount);
-    });
-
-    // Function to update a cart item or add a new one
-    function updateCartItem(title, price, quantity) {
-        const existingProduct = $(".product_name_amount").filter(function () {
-            return $(this).find(".item_name p").text() === title;
-        });
-
-        if (existingProduct.length > 0) {
-            // Update existing product in cart
-            existingProduct.find(".quantity").text(`${quantity}x`);
-            const newAmount = (price * quantity).toFixed(2);
-            existingProduct.find(".amount_added").text(`$${newAmount}`);
-        } else if (quantity > 0) {
-            // Add a new product to the cart
-            const cartItem = `
-                <div class="product_name_amount">
-                    <div class="item_name">
-                        <p>${title}</p>
-                        <div class="quantity_amount">
-                            <span class="quantity">${quantity}x</span>
-                            <div class="amount_plus">
-                                <span class="amount">@ $${price}</span>
-                                <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
-                            </div>
+    // Function to add a new item to the cart
+    function addCartItem(title, price, quantity) {
+        const cartItem = `
+            <div class="product_name_amount" data-title="${title}">
+                <div class="item_name">
+                    <p>${title}</p>
+                    <div class="quantity_amount">
+                        <span class="quantity">${quantity}x</span>
+                        <div class="amount_plus">
+                            <span class="amount">@ $${price.toFixed(2)}</span>
+                            <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
                         </div>
                     </div>
-                    <div class="cancel_btn">
-                        <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
-                    </div>
-                </div>`;
-            $(".product_items").append(cartItem);
-        }
+                </div>
+                <div class="cancel_btn">
+                    <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+                </div>
+            </div>`;
+        $(".product_items").append(cartItem);
     }
 
-    // Function to remove an item from the cart
-    function removeCartItem(title) {
-        $(".product_name_amount").filter(function () {
-            return $(this).find(".item_name p").text() === title;
-        }).remove();
+    // Function to update an existing cart item
+    function updateCartItem(title, price, quantity) {
+        const cartItem = $(`.product_name_amount[data-title="${title}"]`);
+        cartItem.find(".quantity").text(`${quantity}x`);
+        cartItem.find(".amount_added").text(`$${(price * quantity).toFixed(2)}`);
     }
+
+    // Function to calculate and update the total
+    function updateTotal() {
+        let total = 0;
+
+        // Calculate the sum of all items in the cart
+        for (const title in cartItems) {
+            const item = cartItems[title];
+            total += item.price * item.quantity;
+        }
+
+        // Update the total_amount div
+        $(".total_amount").text(`$${total.toFixed(2)}`);
+    }
+
+    // Handle removing an item from the cart
+    $(".product_items").on("click", ".close_btn", function () {
+        const cartItem = $(this).closest(".product_name_amount");
+        const title = cartItem.data("title");
+
+        // Remove from the cartItems object
+        delete cartItems[title];
+
+        // Remove from the DOM
+        cartItem.remove();
+
+        updateTotal(); // Update the total
+    });
 });

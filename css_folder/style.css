@@ -388,3 +388,16 @@ h2 {
     padding: 1rem 0rem 0.6rem 0rem;
     justify-content: space-between;
 }
+
+.comfirm_order_btn2 {
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1rem 0rem;
+    margin-top: 2rem;
+    border: none;
+    color: #fff;
+    border-radius: 2rem;
+    background-color: var(--activeRed);
+    cursor: pointer;
+}

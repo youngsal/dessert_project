@@ -1054,4 +1054,12 @@ $(document).ready(function () {
 
         updateTotal(); // Update the total
     });
+
+    $(".comfirm_order_btn").click(function (){
+        $(".success_modal").css({"display" : "block"});
+    });
+
+    $(".comfirm_order_btn2").click(function (){
+        $(".success_modal").hide();
+    });
 });

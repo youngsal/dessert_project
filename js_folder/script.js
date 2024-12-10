@@ -923,9 +923,168 @@
 
 
 
+// // using this
+// $(document).ready(function () {
+//     let cartItems = {}; // Track items in the cart
+
+//     // Handle "Add to Cart" button click
+//     $(".add_btn").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const parentBtn = $(this).closest(".add_minus_btn");
+
+//         $(this).hide();
+//         parentBtn.find(".add_quantity").css({ display: "flex" });
+//         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
+
+//         // Add or update the item in the cart
+//         if (!cartItems[title]) {
+//             cartItems[title] = { price: price, quantity: 1 };
+//             addCartItem(title, price, 1);
+//         } else {
+//             cartItems[title].quantity += 1;
+//             updateCartItem(title, cartItems[title].price, cartItems[title].quantity);
+//         }
+
+//         updateTotal(); // Update the total amount
+//     });
+
+//     // Decrement quantity and update cart when the "Remove" icon is clicked
+//     $(".remove_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         if (currentQuantity > 1) {
+//             // Decrease quantity and update UI
+//             currentQuantity--;
+//             quantityElement.text(currentQuantity);
+
+//             // Update cart item and cartItems object
+//             cartItems[title].quantity = currentQuantity;
+//             updateCartItem(title, price, currentQuantity);
+//         } else {
+//             // Remove item from cart if quantity is 0
+//             removeCartItem(title);
+//         }
+
+//         updateTotal(); // Update total amount after quantity change
+//     });
+
+//     // Increment quantity and update cart when the "Add" icon is clicked
+//     $(".add_icon").click(function () {
+//         const parentRow = $(this).closest(".product_row");
+//         const title = parentRow.find("h4").text();
+//         const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+//         const quantityElement = parentRow.find(".number_quantity");
+
+//         let currentQuantity = parseInt(quantityElement.text()) || 0;
+
+//         // Increase quantity and update UI
+//         currentQuantity++;
+//         quantityElement.text(currentQuantity);
+
+//         // Update cart item and cartItems object
+//         if (cartItems[title]) {
+//             cartItems[title].quantity = currentQuantity;
+//         } else {
+//             cartItems[title] = { price: price, quantity: currentQuantity };
+//         }
+
+//         updateCartItem(title, price, currentQuantity);
+//         updateTotal(); // Update total amount after quantity change
+//     });
+
+//     // Function to add a new item to the cart
+//     function addCartItem(title, price, quantity) {
+//         const cartItem = `
+//             <div class="product_name_amount" data-title="${title}">
+//                 <div class="item_name">
+//                     <p>${title}</p>
+//                     <div class="quantity_amount">
+//                         <span class="quantity">${quantity}x</span>
+//                         <div class="amount_plus">
+//                             <span class="amount">@ $${price.toFixed(2)}</span>
+//                             <span class="amount_added">$${(price * quantity).toFixed(2)}</span>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div class="cancel_btn">
+//                     <ion-icon name="close-circle-outline" class="close_btn"></ion-icon>
+//                 </div>
+//             </div>`;
+//         $(".product_items").append(cartItem);
+//     }
+
+//     // Function to update an existing cart item
+//     function updateCartItem(title, price, quantity) {
+//         const cartItem = $(`.product_name_amount[data-title="${title}"]`);
+//         cartItem.find(".quantity").text(`${quantity}x`);
+//         cartItem.find(".amount_added").text(`$${(price * quantity).toFixed(2)}`);
+//     }
+
+//     // Function to calculate and update the total
+//     function updateTotal() {
+//         let total = 0;
+
+//         // Calculate the sum of all items in the cart
+//         for (const title in cartItems) {
+//             const item = cartItems[title];
+//             total += item.price * item.quantity;
+//         }
+
+//         // Update the total_amount div
+//         $(".total_amount").text(`$${total.toFixed(2)}`);
+//     }
+
+//     // Handle removing an item from the cart
+//     $(".product_items").on("click", ".close_btn", function () {
+//         const cartItem = $(this).closest(".product_name_amount");
+//         const title = cartItem.data("title");
+
+//         // Remove from the cartItems object
+//         delete cartItems[title];
+
+//         // Remove from the DOM
+//         cartItem.remove();
+
+//         updateTotal(); // Update the total
+//     });
+
+//     $(".comfirm_order_btn").click(function (){
+//         $(".success_modal").css({"display" : "block"});
+//     });
+
+//     $(".comfirm_order_btn2").click(function (){
+//         $(".success_modal").hide();
+//     });
+// });
+
+
+
 
 $(document).ready(function () {
     let cartItems = {}; // Track items in the cart
+
+    // Function to toggle the visibility of the cart message or items
+    function toggleCartMessage() {
+        if (Object.keys(cartItems).length === 0) {
+            $(".image_appear").show();
+            $(".product_item_div").hide();
+            $(".comfirm_order_btn").prop("disabled", true);
+        } else {
+            $(".image_appear").hide();
+            $(".product_item_div").show();
+            $(".comfirm_order_btn").prop("disabled", false);
+        }
+    }
+
+    // Initial setup: Hide cart items and disable button if cart is empty
+    toggleCartMessage();
 
     // Handle "Add to Cart" button click
     $(".add_btn").click(function () {
@@ -938,7 +1097,6 @@ $(document).ready(function () {
         parentBtn.find(".add_quantity").css({ display: "flex" });
         parentBtn.css({ "background-color": "hsl(14, 86%, 42%)" });
 
-        // Add or update the item in the cart
         if (!cartItems[title]) {
             cartItems[title] = { price: price, quantity: 1 };
             addCartItem(title, price, 1);
@@ -947,10 +1105,32 @@ $(document).ready(function () {
             updateCartItem(title, cartItems[title].price, cartItems[title].quantity);
         }
 
-        updateTotal(); // Update the total amount
+        updateTotal();
+        toggleCartMessage();
     });
 
-    // Decrement quantity and update cart when the "Remove" icon is clicked
+    // Increment quantity
+    $(".add_icon").click(function () {
+        const parentRow = $(this).closest(".product_row");
+        const title = parentRow.find("h4").text();
+        const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
+        const quantityElement = parentRow.find(".number_quantity");
+
+        let currentQuantity = parseInt(quantityElement.text()) || 0;
+        currentQuantity++;
+        quantityElement.text(currentQuantity);
+
+        if (cartItems[title]) {
+            cartItems[title].quantity = currentQuantity;
+        } else {
+            cartItems[title] = { price: price, quantity: currentQuantity };
+        }
+
+        updateCartItem(title, price, currentQuantity);
+        updateTotal();
+    });
+
+    // Decrement quantity
     $(".remove_icon").click(function () {
         const parentRow = $(this).closest(".product_row");
         const title = parentRow.find("h4").text();
@@ -960,46 +1140,19 @@ $(document).ready(function () {
         let currentQuantity = parseInt(quantityElement.text()) || 0;
 
         if (currentQuantity > 1) {
-            // Decrease quantity and update UI
             currentQuantity--;
             quantityElement.text(currentQuantity);
-
-            // Update cart item and cartItems object
             cartItems[title].quantity = currentQuantity;
             updateCartItem(title, price, currentQuantity);
         } else {
-            // Remove item from cart if quantity is 0
             removeCartItem(title);
         }
 
-        updateTotal(); // Update total amount after quantity change
+        updateTotal();
+        toggleCartMessage();
     });
 
-    // Increment quantity and update cart when the "Add" icon is clicked
-    $(".add_icon").click(function () {
-        const parentRow = $(this).closest(".product_row");
-        const title = parentRow.find("h4").text();
-        const price = parseFloat(parentRow.find(".dollar_amount").text().replace("$", ""));
-        const quantityElement = parentRow.find(".number_quantity");
-
-        let currentQuantity = parseInt(quantityElement.text()) || 0;
-
-        // Increase quantity and update UI
-        currentQuantity++;
-        quantityElement.text(currentQuantity);
-
-        // Update cart item and cartItems object
-        if (cartItems[title]) {
-            cartItems[title].quantity = currentQuantity;
-        } else {
-            cartItems[title] = { price: price, quantity: currentQuantity };
-        }
-
-        updateCartItem(title, price, currentQuantity);
-        updateTotal(); // Update total amount after quantity change
-    });
-
-    // Function to add a new item to the cart
+    // Add cart item
     function addCartItem(title, price, quantity) {
         const cartItem = `
             <div class="product_name_amount" data-title="${title}">
@@ -1020,46 +1173,36 @@ $(document).ready(function () {
         $(".product_items").append(cartItem);
     }
 
-    // Function to update an existing cart item
+    // Update cart item
     function updateCartItem(title, price, quantity) {
         const cartItem = $(`.product_name_amount[data-title="${title}"]`);
         cartItem.find(".quantity").text(`${quantity}x`);
         cartItem.find(".amount_added").text(`$${(price * quantity).toFixed(2)}`);
     }
 
-    // Function to calculate and update the total
+    // Remove cart item
+    function removeCartItem(title) {
+        $(`.product_name_amount[data-title="${title}"]`).remove();
+        delete cartItems[title];
+        toggleCartMessage();
+    }
+
+    // Calculate total
     function updateTotal() {
         let total = 0;
-
-        // Calculate the sum of all items in the cart
         for (const title in cartItems) {
-            const item = cartItems[title];
-            total += item.price * item.quantity;
+            total += cartItems[title].price * cartItems[title].quantity;
         }
-
-        // Update the total_amount div
         $(".total_amount").text(`$${total.toFixed(2)}`);
     }
 
-    // Handle removing an item from the cart
-    $(".product_items").on("click", ".close_btn", function () {
-        const cartItem = $(this).closest(".product_name_amount");
-        const title = cartItem.data("title");
-
-        // Remove from the cartItems object
-        delete cartItems[title];
-
-        // Remove from the DOM
-        cartItem.remove();
-
-        updateTotal(); // Update the total
+    // Confirm order
+    $(".comfirm_order_btn").click(function () {
+        $(".success_modal").css({ display: "block" });
     });
 
-    $(".comfirm_order_btn").click(function (){
-        $(".success_modal").css({"display" : "block"});
-    });
-
-    $(".comfirm_order_btn2").click(function (){
+    $(".comfirm_order_btn2").click(function () {
         $(".success_modal").hide();
     });
 });
+

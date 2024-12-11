@@ -401,3 +401,7 @@ h2 {
     background-color: var(--activeRed);
     cursor: pointer;
 }
+
+.hidden_image {
+    display: none;
+}
